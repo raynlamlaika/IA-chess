@@ -15,8 +15,6 @@ enum Piece
 void initBoard(Piece board[8][8]);
 void printBoard(Piece board[8][8]);
 bool makeMove(Piece board[8][8], const std::string& move);
-bool isLegalMove(Piece board[8][8], int fromRow, int fromCol, int toRow, int toCol);
-
-
-
+bool notationToCoords(const std::string& square, int& row, int& col);
+bool isLegalMove(Piece board[8][8], std::string move);
 #endif

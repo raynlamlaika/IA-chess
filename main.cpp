@@ -11,15 +11,18 @@ int main()
     while (true)
     {
         std::cout << "Enter your move (e.g. e2e4): ";
-        std::cin >> move;
+        if (!getline(std::cin, move))
+            exit(1);
         if (move == "quit") break;
-        if (makeMove(board, move))
+        if (isLegalMove(board, move))
         {
-            // th model will be passed from here
-            
-            printBoard(board);
-        } else {
-            std::cout << "Invalid move format!" << std::endl;
+            if (makeMove(board, move))
+            {
+                    printBoard(board);
+
+            } else {
+                std::cout << "Invalid move format!" << std::endl;
+            }
         }
     }
     return 0;
