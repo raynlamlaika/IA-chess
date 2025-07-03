@@ -18,12 +18,12 @@ int main()
         {
             if (makeMove(board, move))
             {
-                    printBoard(board);
+                printBoard(board);
 
-            } else {
-                std::cout << "Invalid move format!" << std::endl;
-            }
+            } 
         }
+        else 
+            std::cout << "Invalid move format!" << std::endl;
     }
     return 0;
 }
