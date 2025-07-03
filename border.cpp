@@ -1,14 +1,9 @@
-#include <iostream>
-#include <string>
+#include "all.hpp"
 
-enum Piece {
-    EMPTY = 0,
-    WP, WN, WB, WR, WQ, WK,
-    BP, BN, BB, BR, BQ, BK
-};
 
 // Function to print the board
-void printBoard(Piece board[8][8]) {
+void printBoard(Piece board[8][8]) 
+{
     for (int r = 7; r >= 0; --r) {  // Print from rank 8 to 1
         std::cout << (r + 1) << " ";
         for (int c = 0; c < 8; ++c) {
@@ -34,7 +29,8 @@ void printBoard(Piece board[8][8]) {
 }
 
 // Initialize the board with starting position
-void initBoard(Piece board[8][8]) {
+void initBoard(Piece board[8][8]) 
+{
     // Clear board
     for (int r = 0; r < 8; ++r)
         for (int c = 0; c < 8; ++c)
@@ -54,7 +50,8 @@ void initBoard(Piece board[8][8]) {
 }
 
 // Converts a square notation like "e2" to board coordinates (row, col)
-bool notationToCoords(const std::string& square, int& row, int& col) {
+bool notationToCoords(const std::string& square, int& row, int& col) 
+{
     if (square.length() != 2) return false;
     col = square[0] - 'a';
     row = square[1] - '1';
@@ -63,7 +60,8 @@ bool notationToCoords(const std::string& square, int& row, int& col) {
 }
 
 // Make a move if valid (no move legality checking for now)
-bool makeMove(Piece board[8][8], const std::string& move) {
+bool makeMove(Piece board[8][8], const std::string& move) 
+{
     if (move.length() != 4) return false;
     int fromRow, fromCol, toRow, toCol;
 
@@ -76,26 +74,3 @@ bool makeMove(Piece board[8][8], const std::string& move) {
     return true;
 }
 
-int main() 
-{
-    Piece board[8][8];
-    initBoard(board);
-
-    printBoard(board);
-
-    std::string move;
-    while (true)
-    {
-        std::cout << "Enter your move (e.g. e2e4): ";
-        std::cin >> move;
-        if (move == "quit") break;
-        if (makeMove(board, move))
-        {
-            // pass the ai model  
-            printBoard(board);
-        } else {
-            std::cout << "Invalid move format!" << std::endl;
-        }
-    }
-    return 0;
-}
