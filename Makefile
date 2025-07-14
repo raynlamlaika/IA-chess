@@ -1,6 +1,6 @@
-NAME = chess_ai
+NAME = chess
 
-SRC = border.cpp main.cpp valide_move.cpp
+SRC = border.cpp main.cpp valide_move.cpp  aimodul.cpp evalpositionscor.cpp
 OBJ = $(SRC:.cpp=.o)
 
 CC = c++

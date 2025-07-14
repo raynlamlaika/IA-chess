@@ -3,6 +3,7 @@
 int main() 
 {
     Piece board[8][8];
+    Piece copy[8][8];
     initBoard(board);
 
     printBoard(board);
@@ -17,7 +18,19 @@ int main()
         if (isLegalMove(board, move))
         {
             if (makeMove(board, move))
-            {
+            {   
+                std::string iamove;
+                printBoard(board);
+                int evalScore = 0;
+                memcpy(copy, board, sizeof(Piece)*64);
+                std::thread t1 (evaluateBoardThread, copy, std::ref(evalScore));
+                std::thread t2 (aiBestMoveThread, copy, /*whiteTurn=*/false, std::ref(iamove));
+                t1.join();
+                t2.join();
+                
+                // here willbe the ia move
+                makeMove(board, iamove);
+                std::cout << " the score is :" << evalScore << std::endl;
                 printBoard(board);
 
             } 
